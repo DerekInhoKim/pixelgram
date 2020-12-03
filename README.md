@@ -39,7 +39,7 @@ Users will be able to like and comment on another user's posts, as well as follo
  - Boto 3
 
  ## Feature List
- ### User
+ ### User CRUD
   - Signup/login/logout
   - User profile (User's profile page, displays all a User's posts, User's description/profile picture, User edit form)
 
@@ -58,3 +58,13 @@ Users will be able to like and comment on another user's posts, as well as follo
 
  ### Followers
   - Users will have the ability to follow other users to recieve updates on a User's homepage.
+
+ ### Database Schema
+  ![Pixelgram Database Schema](/assets/PixelgramDBSchema.png)
+ ### Wireframes
+  - Home Page
+   - Link: https://wireframe.cc/UO0GxO
+  - User Page
+   - Link: https://wireframe.cc/Dom4cN
+  - Post Page
+   - Link: https://wireframe.cc/5uUKC7
