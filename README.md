@@ -1,7 +1,7 @@
 **Developer** Derek Kim
 
 **Description**
-* Pixelgram is a social media app where users are free to create posts which is drawn by a user using a javascript canvas.
+* Pixelgram is a web application where users are free to create posts which are drawn by a user using a javascript canvas.
 The canvas is configured to be a 32 x 32 blocks which act as pixels, to reinforce the pixel art style of drawing.
 These user created pixel drawings will be saved and hosted to AWS S3 using Boto3.
 Users will be able to like and comment on another user's posts, as well as follow other users to get the newest pictures uploaded by the users they follow.
