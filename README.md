@@ -1,98 +1,60 @@
-# Flask React Project
+**Developer** Derek Kim
 
-This is the backend for the Flask React project.
+**Description**
+* Pixelgram is a social media app where users are free to create posts which is drawn by a user using a javascript canvas.
+The canvas is configured to be a 32 x 32 blocks which act as pixels, to reinforce the pixel art style of drawing.
+These user created pixel drawings will be saved and hosted to AWS S3 using Boto3.
+Users will be able to like and comment on another user's posts, as well as follow other users to get the newest pictures uploaded by the users they follow.
 
-## Getting started
+**MVP**
+* User profile and authentication (CRUD)
+* Allow users to create a post (CRUD)
+* The ability for users to create their own drawings to be posted to the website
+* Allow users to like/comment on a post (CRUD)
+* Allow users to follow other users to recieve updates on their homepage with the latest pictures
+* Discovery page, for user's to see posts from users that they don't currently follow.
+* Bookmarks for users to easily track of posts they like
 
-1. Clone this repository (only this branch)
+**Stretch Goals**
+* Allow users to search for other posts using hashtags
+* Allow users to post a story to their account, non-drawing related photo uploads which will persist for 24 hours.
+* Dark Mode to change the color scheme.
+* Mobile Friendly
+* Display Edited status next to posts/comments that have been edited.
+* Comment likes
+* Notifications
+* Discovery page for users to find posts from users that they don't currently follow
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+## Technologies
+ - JavaScript
+ - Python 3
+ - PostgreSQL
+ - Psycopg2
+ - Flask
+ - FlaskForms
+ - SQLAlchemy
+ - Alembic
+ - React
+ - HTML/CSS
+ - Boto 3
 
-2. Install dependencies
+ ## Feature List
+ ### User
+  - Signup/login/logout
+  - User profile (User's profile page, displays all a User's posts, User's description/profile picture, User edit form)
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+ ### Post CRUD
+  - Users can create/edit/delete a post
+  - A Post will contain a user drawn image as it's image source, a caption, posted date/time.
+  - A Post will have likes associated with them.
+  - A Post will also have comments assocaited with them.
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+ ### Comments CRUD
+  - Users will have the ability to leave comments on posts
+  - Comments will have the ability to be updated.
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+ ### Likes
+  - Users will have the ability to like a post, this will be reflected on the post.
 
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
-
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
-
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
-
-## Deploy to Heroku
-
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
-
-   ```bash
-   heroku login
-   ```
-
-5. Login to the heroku container registry
-
-   ```bash
-   heroku container:login
-   ```
-
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-8. Release your docker container to heroku
-
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. set up your database:
-
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
-
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
-
-11. profit
+ ### Followers
+  - Users will have the ability to follow other users to recieve updates on a User's homepage.
