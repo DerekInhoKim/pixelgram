@@ -5,17 +5,18 @@ from flask_login import UserMixin
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key = True)
-    fullname = db.Column(db.String(255), nullable = False)
-    username = db.Column(db.String(40), nullable = False, unique = True)
-    email = db.Column(db.String(255), nullable = False, unique = True)
-    hashed_password = db.Column(db.String(255), nullable = False)
+    id = db.Column(db.Integer, primary_key=True)
+    fullname = db.Column(db.String(255), nullable=False)
+    username = db.Column(db.String(40), nullable=False, unique=True)
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    hashed_password = db.Column(db.String(255), nullable=False)
     about = db.Column(db.String(255))
     profilePicture = db.Column(db.String(225))
 
     posts = db.relationship('Post', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
     likes = db.relationship('Like', back_populates='user')
+    followers = db.relationship('Follower', back_populates='user')
 
     @property
     def password(self):
