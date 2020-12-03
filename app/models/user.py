@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
     likes = db.relationship('Like', back_populates='user')
-    followers = db.relationship('Follower', back_populates='user')
+    followering = db.relationship('Follower',foreign_keys="Follower.followingUserId", back_populates='followingUser')
 
     @property
     def password(self):
@@ -39,6 +39,7 @@ class User(db.Model, UserMixin):
             "profilePicture": self.profilePicture
         }
 
+    # to_joined_dict only keeps track of posts. Adjust accordingly
     def to_joined_dict(self):
         return {
             "id": self.id,

@@ -8,8 +8,10 @@ class Follower(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     followingUserId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
-    user = db.relationship("User", back_populates="followers")
-    followingUser = db.relationship("User", back_populates="followers")
+    user = db.relationship("User",foreign_keys="Follower.userId")
+    followingUser = db.relationship("User",foreign_keys="Follower.followingUserId")
+
+    db.UniqueConstraint('userid','followingUserId', name='uniqueIdx')
 
     def to_dict(self):
         return {
