@@ -1,35 +1,18 @@
-from app.models import db, Follower
+from app.models import db
+from app.models.user import followers
 
 # Adds a demo user, you can add other users here if you want
 
 
 def seed_followers(users):
-    followers = [
-        Follower(
-            userId=users[0].id,
-            followingUserId=users[1].id),
-        Follower(
-            userId=users[1].id,
-            followingUserId=users[2].id),
-        Follower(
-            userId=users[4].id,
-            followingUserId=users[1].id),
-        Follower(
-            userId=users[4].id,
-            followingUserId=users[0].id),
-        Follower(
-            userId=users[4].id,
-            followingUserId=users[3].id),
-        Follower(
-            userId=users[2].id,
-            followingUserId=users[4].id),
-        Follower(
-            userId=users[3].id,
-            followingUserId=users[4].id),
-
-    ]
-
-    db.session.add_all(followers)
+    # Tables are not callable like Models are
+    # To seed data we need to execute an insert into our table
+    # execute method takes the table and insert method as it's first parameter,
+    # Then we can give it an array of inserts to execute.
+    db.session.execute(followers.insert(), [
+        {"followerId": users[0].id, "followingId": users[1].id},
+        {"followerId": users[1].id, "followingId": users[2].id}
+        ])
     db.session.commit()
     return followers
 
