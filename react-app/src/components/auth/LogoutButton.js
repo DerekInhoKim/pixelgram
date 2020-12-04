@@ -8,8 +8,10 @@ const LogoutButton = ({setAuthenticated}) => {
 
   const onLogout = async (e) => {
     await logout();
-    dispatch(removeUser())
+    // User must be relocated before removing the user from the state to prevent a race condition where the users slice of state is removed and cannot render the page accordingly.
+    window.location.href = "/login"
     setAuthenticated(false);
+    dispatch(removeUser())
   };
 
   return <button onClick={onLogout}>Logout</button>;
