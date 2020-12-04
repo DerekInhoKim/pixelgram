@@ -23,7 +23,15 @@ class Post(db.Model):
         }
 
     # to_joined_dict method returns an dictionary with the joined tables information appended.
-    #
+    def to_user_dict(self):
+        return {
+            "id": self.id,
+            "content": self.content,
+            "caption": self.caption,
+            "createdAt": self.createdAt,
+            "user": self.user.to_dict()
+        }
+
     def to_joined_dict(self):
         return {
             "id": self.id,
