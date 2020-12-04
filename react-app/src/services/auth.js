@@ -18,6 +18,7 @@ export const login = async (email, password) => {
       password
     })
   });
+  // Will return the current user.to_dict()
   return await response.json();
 }
 

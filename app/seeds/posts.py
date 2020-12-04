@@ -38,5 +38,5 @@ def seed_posts(users):
 
 
 def undo_posts():
-    db.session.execute('TRUNCATE posts CASCADE')
+    db.session.execute('TRUNCATE posts RESTART IDENTITY CASCADE')
     db.session.commit()

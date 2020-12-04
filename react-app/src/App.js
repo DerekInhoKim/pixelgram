@@ -7,20 +7,25 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
+import HomePage from './components/homepage/Homepage'
+import {useDispatch} from 'react-redux'
+import {setUser} from './redux/actions/users'
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     (async() => {
       const user = await authenticate();
       if (!user.errors) {
+        dispatch(setUser(user));
         setAuthenticated(true);
       }
       setLoaded(true);
     })();
-  }, []);
+  }, [loaded]);
 
   if (!loaded) {
     return null;
@@ -45,7 +50,7 @@ function App() {
         <User />
       </ProtectedRoute>
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-        <h1>My Home Page</h1>
+        <HomePage/>
       </ProtectedRoute>
     </BrowserRouter>
   );
