@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
     likes = db.relationship('Like', back_populates='user')
-    followering = db.relationship('Follower',foreign_keys="Follower.followingUserId", back_populates='followingUser')
+    following = db.relationship('Follower',foreign_keys="Follower.followingUserId", back_populates='followingUser')
 
     @property
     def password(self):
