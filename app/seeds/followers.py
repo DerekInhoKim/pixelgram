@@ -11,7 +11,8 @@ def seed_followers(users):
     # Then we can give it an array of inserts to execute.
     db.session.execute(followers.insert(), [
         {"followerId": users[0].id, "followingId": users[1].id},
-        {"followerId": users[1].id, "followingId": users[2].id}
+        {"followerId": users[1].id, "followingId": users[2].id},
+        {"followerId": users[4].id, "followingId": users[2].id}
         ])
     db.session.commit()
     return followers

@@ -8,6 +8,8 @@ class Like(db.Model):
     postId = db.Column(db.Integer, db.ForeignKey("posts.id"), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
+    db.UniqueConstraint('postId', 'userId', name='unique')
+
     post = db.relationship("Post", back_populates="likes")
     user = db.relationship("User", back_populates="likes")
 

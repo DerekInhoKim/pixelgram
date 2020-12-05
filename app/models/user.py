@@ -5,7 +5,7 @@ from flask_login import UserMixin
 followers = db.Table('followers',
     db.Column('followerId', db.Integer, db.ForeignKey('users.id')),
     db.Column('followingId', db.Integer, db.ForeignKey('users.id')),
-    db.UniqueConstraint('followerId','followingId', name='uniqueIdx')
+    db.UniqueConstraint('followerId', 'followingId', name='uniqueIdx')
     )
 
 class User(db.Model, UserMixin):
