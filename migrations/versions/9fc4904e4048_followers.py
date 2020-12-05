@@ -21,6 +21,7 @@ def upgrade():
     op.add_column('followers', sa.Column('followerId', sa.Integer(), nullable=True))
     op.add_column('followers', sa.Column('followingId', sa.Integer(), nullable=True))
     op.create_unique_constraint('uniqueIdx', 'followers', ['followerId', 'followingId'])
+    op.create_unique_constraint('unique', 'likes', ['postId', 'userId'])
     op.drop_constraint('followers_followingUserId_fkey', 'followers', type_='foreignkey')
     op.drop_constraint('followers_userId_fkey', 'followers', type_='foreignkey')
     op.create_foreign_key(None, 'followers', 'users', ['followingId'], ['id'])
