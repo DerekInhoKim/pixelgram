@@ -1,8 +1,8 @@
-"""Create tables
+"""initial migration
 
-Revision ID: d7a93495db01
+Revision ID: d0cb4810abc1
 Revises: 
-Create Date: 2020-12-03 09:07:56.007618
+Create Date: 2020-12-05 13:05:47.790457
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd7a93495db01'
+revision = 'd0cb4810abc1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,12 +31,11 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
     op.create_table('followers',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('userId', sa.Integer(), nullable=False),
-    sa.Column('followingUserId', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['followingUserId'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.Column('followerId', sa.Integer(), nullable=True),
+    sa.Column('followingId', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['followerId'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['followingId'], ['users.id'], ),
+    sa.UniqueConstraint('followerId', 'followingId', name='uniqueIdx')
     )
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
