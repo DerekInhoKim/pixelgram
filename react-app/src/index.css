@@ -18,3 +18,8 @@
     max-width: 100px;
     border-radius: 50%;
 }
+
+.comment_image {
+    max-width: 50px;
+    border-radius: 50%;
+}

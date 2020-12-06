@@ -17,6 +17,12 @@ const HomePage = () => {
         }
     }, [currentUser])
 
+    const postComponent = posts.map((post) => {
+        return (
+            <DisplayPost key={post.id} id={post.id} caption={post.caption} content={post.content} createdAt={post.createdAt} user={post.user}/>
+        )
+    })
+
     if(!currentUser){
         return (
             <h1>Store is configured poorly</h1>
@@ -25,11 +31,7 @@ const HomePage = () => {
     return (
         <div>
             <UserCard />
-            {posts.map((post) => {
-                return (
-                    <DisplayPost key={post.id} id={post.id} caption={post.caption} content={post.content} createdAt={post.createdAt} user={post.user}/>
-                )
-            })}
+            <div>{postComponent}</div>
         </div>
     )
 

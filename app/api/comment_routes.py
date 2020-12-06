@@ -23,3 +23,9 @@ def createComment():
         return {'comment': comment.to_dict()}
     else:
         return {'error': 'Form not valid'}, 404
+
+
+@comments_route.route('/post/<int:postId>', methods=['GET'])
+def getComments(postId):
+    comments = Comment.query.join(User).filter(Comment.postId == postId).all()
+    return {'comments': [comment.to_joined_dict() for comment in comments]}

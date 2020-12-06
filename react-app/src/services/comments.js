@@ -13,3 +13,8 @@ export const createComment = async (message, postId, userId) => {
     const comment = await response.json()
     return comment
 }
+
+export const getComments = async (postId) => {
+    const response = await fetch(`/api/comments/post/${postId}`)
+    return await response.json()
+}
