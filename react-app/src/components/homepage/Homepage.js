@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import {getFollowingPosts} from '../../services/post'
 import DisplayPost from './DisplayPost'
+import UserCard from './UserCard'
 
 const HomePage = () => {
     const currentUser = useSelector(state => state.users.user)
@@ -23,6 +24,7 @@ const HomePage = () => {
     }
     return (
         <div>
+            <UserCard />
             {posts.map((post) => {
                 return (
                     <DisplayPost key={post.id} id={post.id} caption={post.caption} content={post.content} createdAt={post.createdAt} user={post.user}/>

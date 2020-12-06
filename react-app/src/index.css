@@ -7,3 +7,14 @@
 .homepage_post_image {
     width: 400px;
 }
+
+.usercard_container {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+
+.usercard_image {
+    max-width: 100px;
+    border-radius: 50%;
+}

@@ -5,6 +5,7 @@ import {useSelector} from 'react-redux'
 
 const DisplayPost = ({id, caption, content, createdAt, user}) => {
     const currentUser = useSelector(state => state.users.user)
+
     const [likes, setLikes] = useState([])
     const [userLike, setUserLike] = useState(false)
 
@@ -22,26 +23,26 @@ const DisplayPost = ({id, caption, content, createdAt, user}) => {
     useEffect(() => {
         (async () => {
             const likesResponse = await getPostLikes(id)
-            // console.log(likesResponse.like)
             setLikes(likesResponse.like)
         })()
     }, [userLike, id])
 
+    // Handles the button click when a user likes a post
     const handleLike = async () => {
         const response = await likePost(id, currentUser.id)
-        // console.log(response)
         if (response.error) {
             alert(response.error)
         }
         setUserLike(true)
     }
 
+    // Handles the button click when a user dislikes/unlikes a post
     const handleDislike = async () => {
         const response = await dislikePost(id, currentUser.id)
-        console.log(response.message)
         setUserLike(false)
     }
 
+    // Display a liked post
     if (userLike === true){
         return (
             <div className="homepage_post">
