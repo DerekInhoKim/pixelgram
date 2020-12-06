@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import PostHeader from './PostHeader'
 import {getPostLikes, likePost, userLikesPost, dislikePost} from '../../services/likes'
 import {useSelector} from 'react-redux'
+import CommentForm from './CommentForm'
 
 const DisplayPost = ({id, caption, content, createdAt, user}) => {
     const currentUser = useSelector(state => state.users.user)
@@ -53,6 +54,7 @@ const DisplayPost = ({id, caption, content, createdAt, user}) => {
                 <h3>{likes.length}</h3>
                 <button onClick={handleDislike}>Like</button>
                 <h1>user likes</h1>
+                <CommentForm postId={id}/>
             </div>
         )
     }
@@ -66,6 +68,7 @@ const DisplayPost = ({id, caption, content, createdAt, user}) => {
             <h3>{createdAt}</h3>
             <h3>{likes.length}</h3>
             <button onClick={handleLike}>Like</button>
+            <CommentForm postId={id}/>
         </div>
     )
 }
