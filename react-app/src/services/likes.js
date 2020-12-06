@@ -19,6 +19,28 @@ export const likePost = async (postId, userId) => {
     })
     if (!response.ok){
         console.log('something went wrong')
+        return await response.json()
     }
     return await response.json()
+}
+
+export const dislikePost = async (postId, userId) => {
+    const response= await fetch('api/likes/delete', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            postId,
+            userId
+        })
+    })
+    return await response.json()
+}
+
+// This route makes a request to see if a user likes a post
+export const userLikesPost = async (postId, userId) => {
+    const response = await fetch(`/api/likes/${userId}/post/${postId}`)
+    return await response.json()
+
 }

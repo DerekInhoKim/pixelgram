@@ -9,10 +9,7 @@ likes_routes = Blueprint('likes', __name__)
 def createLike():
     req_data = request.get_json()
     postId = req_data['postId']
-    print(postId)
     userId = req_data['userId']
-    print(req_data)
-    print("================================================================")
 
     try:
 
@@ -26,6 +23,19 @@ def createLike():
         return {'like': like.to_dict()}
     except IntegrityError:
         return {'errors': 'User already likes'}, 404
+
+
+@likes_routes.route('/delete', methods=['DELETE'])
+def deleteLike():
+    req_data = request.get_json()
+    postId = req_data['postId']
+    userId = req_data['userId']
+
+    like = Like.query.filter(Like.postId == postId and Like.userId == userId).one()
+
+    db.session.delete(like)
+    db.session.commit()
+    return {'message': 'successfully deleted'}, 200
 
 
 # This route will return the number of likes for a user
@@ -42,4 +52,7 @@ def getPostLikes(postId):
 @likes_routes.route('/<int:userId>/post/<int:postId>', methods=['GET'])
 def getUserLiked(userId, postId):
     likes = Like.query.filter(Like.postId == postId and Like.userId == userId).count()
-    return {'likes': likes}
+    if likes > 0:
+        return {'likes': True}
+    else:
+        return {'likes': False}
