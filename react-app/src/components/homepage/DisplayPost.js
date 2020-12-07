@@ -3,8 +3,8 @@ import PostHeader from './PostHeader'
 import {getPostLikes, likePost, userLikesPost, dislikePost} from '../../services/likes'
 import {getComments} from '../../services/comments'
 import {useSelector} from 'react-redux'
-import DisplayComments from './DisplayComments'
-import CommentForm from './CommentForm'
+import DisplayComments from '../comments/DisplayComments'
+import CommentForm from '../comments/CommentForm'
 
 const DisplayPost = ({id, caption, content, createdAt, user}) => {
     const currentUser = useSelector(state => state.users.user)

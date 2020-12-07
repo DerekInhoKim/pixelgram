@@ -1,4 +1,4 @@
-export const getFollowingPosts = async (userId) => {
-    const response = await fetch(`/api/follows/${userId}/posts`)
+export const getPost = async (postId) => {
+    const response = await fetch(`/api/posts/${postId}`)
     return await response.json()
 }

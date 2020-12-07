@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
-import {getFollowingPosts} from '../../services/post'
+import {getFollowingPosts} from '../../services/following'
 import DisplayPost from './DisplayPost'
 import UserCard from './UserCard'
 

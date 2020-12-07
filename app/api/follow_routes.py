@@ -9,8 +9,19 @@ follow_routes = Blueprint('follow', __name__)
 @follow_routes.route('/<int:id>/posts', methods=['GET'])
 def followingPosts(id):
     posts = Post.query.join(User).join(followers,
-                            (followers.c.followingId == Post.userId)).filter(
-                                followers.c.followerId == id).order_by(
+                                       (followers.c.followingId == Post.userId)).filter(
+                                    followers.c.followerId == id).order_by(
                                     Post.createdAt.desc()).all()
-    print(posts)
     return {'posts': [post.to_user_dict() for post in posts]}
+
+
+# This route will determine if a user is following another user
+@follow_routes.route('/<int:followerId>/following/<int:followingId>',
+                     methods=['GET'])
+def followingUser(followerId, followingId):
+    following = User.query.join(followers, followers.c.followerId == User.id).filter(
+        followers.c.followingId == followingId).count()
+    if following > 0:
+        return {'following': True}
+    else:
+        return {'following': False}
