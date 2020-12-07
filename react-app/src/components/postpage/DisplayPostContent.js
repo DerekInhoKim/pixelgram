@@ -84,6 +84,7 @@ const DisplayPostContent = () => {
     return (
         <div>
             <PostHeader />
+            {/* Post caption should be styled seperately. similarly to a comment */}
             <h1>{post.caption}</h1>
             <h3>{post.createdAt}</h3>
             <h3>{likes.length}</h3>

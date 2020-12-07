@@ -13,7 +13,7 @@ const PostHeader = () => {
             const followingResponse = await isFollowing(currentUser.id, postUser.id)
             setFollowing(followingResponse.following)
         })()
-    }, [])
+    }, [postUser.id])
 
 
     return (
