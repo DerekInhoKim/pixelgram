@@ -1,6 +1,15 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
 
-const DisplayComments = () => {
-    const currentUser = useSelector(state => state.users.user)
+const DisplayComments = ({comment}) => {
+    console.log(comment)
+    return (
+        <div>
+            <img className='comment_image' src={comment.user.profilePicture} alt=""/>
+            <span>{comment.message}</span>
+            <span>{comment.user.username}</span>
+        </div>
+    )
+
 }
+
+export default DisplayComments

@@ -23,6 +23,5 @@ class Comment(db.Model):
         return {
             "id": self.id,
             "message": self.message,
-            "post": self.post.to_dict(),
             "user": self.user.to_dict()
         }
