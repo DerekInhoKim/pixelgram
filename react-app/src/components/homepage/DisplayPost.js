@@ -32,6 +32,11 @@ const DisplayPost = ({id, caption, content, createdAt, user}) => {
         })()
     }, [userLike, id])
 
+    // This use effects fires off a request to grab all comments for a post
+    // Pass in the currentComments in the dependency array
+    // When the comment slice of store changes, it will fire off this request again.
+    // Comment slice of state is currently not functioning ideally.
+    // Deleting a comment will need to be flushed out more thoroughly
     useEffect(() => {
         (async () => {
             const commentsResponse = await getComments(id)
