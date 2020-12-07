@@ -61,25 +61,6 @@ const DisplayPost = ({id, caption, content, createdAt, user}) => {
         )
     })
 
-    // Display a liked post
-    // Refactor to use some turnary in the return statement, to only redisplay the like button/functionality
-    if (userLike === true){
-        return (
-            <div className="homepage_post">
-                <PostHeader user={user}/>
-                <h1>{caption}</h1>
-                <img className="homepage_post_image" src={content} width="500" alt="content"/>
-                <h3>{createdAt}</h3>
-                <h3>{likes.length}</h3>
-                <button onClick={handleDislike}>Unlike</button>
-                <h1>user likes</h1>
-                <div>{commentComponent}</div>
-                <CommentForm postId={id}/>
-            </div>
-        )
-    }
-
-
     return (
         <div className="homepage_post">
             <PostHeader user={user}/>
@@ -87,7 +68,12 @@ const DisplayPost = ({id, caption, content, createdAt, user}) => {
             <img className="homepage_post_image" src={content} width="500" alt="content"/>
             <h3>{createdAt}</h3>
             <h3>{likes.length}</h3>
-            <button onClick={handleLike}>Like</button>
+            <div>
+                {userLike === true ?
+                <button onClick={handleDislike}>Unlike</button> :
+                <button onClick={handleLike}>Like</button>
+                }
+            </div>
             <div>{commentComponent}</div>
             <CommentForm postId={id}/>
         </div>
