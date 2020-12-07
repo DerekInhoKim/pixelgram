@@ -13,11 +13,13 @@ const CommentForm = ({postId}) => {
         setMessage(e.target.value)
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         const comment = createComment(message, postId, currentUser.id)
         if (!comment.errors) {
             console.log('success')
             dispatch(addComment(comment))
+            setMessage('')
         }
     }
 
