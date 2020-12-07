@@ -8,6 +8,7 @@ import CommentForm from './CommentForm'
 
 const DisplayPost = ({id, caption, content, createdAt, user}) => {
     const currentUser = useSelector(state => state.users.user)
+    const currentComments = useSelector(state => state.comments)
 
     const [likes, setLikes] = useState([])
     const [userLike, setUserLike] = useState(false)
@@ -36,7 +37,7 @@ const DisplayPost = ({id, caption, content, createdAt, user}) => {
             const commentsResponse = await getComments(id)
             setComments(commentsResponse.comments)
         })()
-    }, [])
+    }, [currentComments])
 
     // Handles the button click when a user likes a post
     const handleLike = async () => {
@@ -61,6 +62,7 @@ const DisplayPost = ({id, caption, content, createdAt, user}) => {
     })
 
     // Display a liked post
+    // Refactor to use some turnary in the return statement, to only redisplay the like button/functionality
     if (userLike === true){
         return (
             <div className="homepage_post">
@@ -69,7 +71,7 @@ const DisplayPost = ({id, caption, content, createdAt, user}) => {
                 <img className="homepage_post_image" src={content} width="500" alt="content"/>
                 <h3>{createdAt}</h3>
                 <h3>{likes.length}</h3>
-                <button onClick={handleDislike}>Like</button>
+                <button onClick={handleDislike}>Unlike</button>
                 <h1>user likes</h1>
                 <div>{commentComponent}</div>
                 <CommentForm postId={id}/>

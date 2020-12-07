@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import {createComment} from '../../services/comments'
+import {addComment} from '../../redux/actions/comments'
 
 const CommentForm = ({postId}) => {
     const currentUser = useSelector(state => state.users.user)
     const [message, setMessage] = useState('')
     const [errors, setErrors] = useState('')
+    const dispatch = useDispatch()
 
     const updateMessage = (e) => {
         setMessage(e.target.value)
@@ -13,10 +15,10 @@ const CommentForm = ({postId}) => {
 
     const handleSubmit = async () => {
         const comment = createComment(message, postId, currentUser.id)
-        if (comment.errors) {
-            alert(comment.errors)
+        if (!comment.errors) {
+            console.log('success')
+            dispatch(addComment(comment))
         }
-        console.log('success')
     }
 
     return (
