@@ -27,3 +27,7 @@
     max-width: 50px;
     border-radius: 50%;
 }
+
+.postpage_post {
+    border: 1px solid black
+}

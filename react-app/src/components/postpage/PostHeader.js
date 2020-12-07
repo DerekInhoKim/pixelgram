@@ -15,6 +15,11 @@ const PostHeader = () => {
         })()
     }, [postUser.id])
 
+    if (!postUser){
+        return (
+            null
+        )
+    }
 
     return (
         <div className="post_header">

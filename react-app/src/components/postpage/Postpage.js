@@ -7,6 +7,7 @@ import DisplayPostPage from './DisplayPostPage'
 import {getPost} from '../../services/post'
 
 const PostPage = () => {
+    const postStore = useSelector(state => state.posts)
     const {postId} = useParams();
     const dispatch = useDispatch();
 
@@ -25,7 +26,7 @@ const PostPage = () => {
     return (
         <div className='postpage_post'>
             <DisplayPostPage/>
-            {/* Consider rendering "more posts from this user */}
+            {/* Consider rendering more posts from this user */}
         </div>
     )
 }

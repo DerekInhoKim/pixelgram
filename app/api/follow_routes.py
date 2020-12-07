@@ -19,10 +19,7 @@ def followingPosts(id):
 @follow_routes.route('/<int:followerId>/following/<int:followingId>',
                      methods=['GET'])
 def followingUser(followerId, followingId):
-    # following = User.query.join(followers, followers.c.followerId == User.id).filter(
-    #     followers.c.followingId == followingId).one()
     following = db.session.query(followers).filter(followers.c.followerId == followerId).filter(followers.c.followingId == followingId).all()
-    # return {'following': following}
     if len(following) != 0:
         return {'following': True}
     else:

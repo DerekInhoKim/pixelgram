@@ -62,7 +62,7 @@ const DisplayPost = ({id, caption, content, createdAt, user}) => {
     // Used to display each comment
     const commentComponent = comments.map(comment => {
         return (
-            <DisplayComments comment={comment}/>
+            <DisplayComments key={comment.id} comment={comment}/>
         )
     })
 

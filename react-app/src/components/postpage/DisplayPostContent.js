@@ -56,7 +56,7 @@ const DisplayPostContent = () => {
     // Used to display each comment
     const commentComponent = comments.map(comment => {
         return (
-            <DisplayComments comment={comment}/>
+            <DisplayComments key={comment.id} comment={comment}/>
         )
     })
 
@@ -78,6 +78,12 @@ const DisplayPostContent = () => {
     if(mounted === false){
         return (
             <h1>loading</h1>
+        )
+    }
+
+    if (!post){
+        return (
+            null
         )
     }
 
