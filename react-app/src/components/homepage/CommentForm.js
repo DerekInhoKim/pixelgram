@@ -13,11 +13,13 @@ const CommentForm = ({postId}) => {
         setMessage(e.target.value)
     }
 
+
+    // Handles the submission of the form
     const handleSubmit = async (e) => {
         e.preventDefault()
         const comment = createComment(message, postId, currentUser.id)
         if (!comment.errors) {
-            console.log('success')
+            // Changes the comment slice of state to update the parent component to make a new requst to find the comment
             dispatch(addComment(comment))
             setMessage('')
         }
@@ -26,7 +28,7 @@ const CommentForm = ({postId}) => {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="comment"></label>
-            <textarea onChange={updateMessage} name="comment" cols="10" rows="5" value={message} placeholder="Add a comment..."></textarea>
+            <textarea onChange={updateMessage} name="comment" value={message} placeholder="Add a comment..."></textarea>
             <button>Post</button>
         </form>
     )
