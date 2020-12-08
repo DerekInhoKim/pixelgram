@@ -35,3 +35,12 @@
 .postpage_post_container {
     display: flex
 }
+
+.userpage_image {
+    max-width: 200px;
+    border-radius: 50%;
+}
+
+.userpage_header_container {
+    display: flex;
+}

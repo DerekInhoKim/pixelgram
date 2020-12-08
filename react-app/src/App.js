@@ -4,11 +4,10 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
 import HomePage from './components/homepage/Homepage'
 import PostPage from './components/postpage/Postpage'
 import CreatePost from './components/createpost/CreatePost'
+import UserPage from './components/userpage/UserPage'
 import { authenticate } from "./services/auth";
 import {useDispatch} from 'react-redux'
 import {setUser} from './redux/actions/users'
@@ -45,11 +44,8 @@ function App() {
       <Route path="/sign-up" exact={true}>
         <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
       </Route>
-      <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-        <UsersList/>
-      </ProtectedRoute>
       <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-        <User />
+        <UserPage />
       </ProtectedRoute>
       <ProtectedRoute path="/post/create" exact={true} authenticated={authenticated}>
         <CreatePost />

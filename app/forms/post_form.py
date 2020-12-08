@@ -6,4 +6,3 @@ from wtforms.validators import DataRequired
 class PostForm(FlaskForm):
     caption = StringField("caption", [DataRequired()])
     content = TextAreaField("content", [DataRequired()])
-    userId = IntegerField("userId", [DataRequired()])
