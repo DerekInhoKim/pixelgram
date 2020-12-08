@@ -6,8 +6,10 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import { authenticate } from "./services/auth";
 import HomePage from './components/homepage/Homepage'
+import PostPage from './components/postpage/Postpage'
+import CreatePost from './components/createpost/CreatePost'
+import { authenticate } from "./services/auth";
 import {useDispatch} from 'react-redux'
 import {setUser} from './redux/actions/users'
 
@@ -48,6 +50,12 @@ function App() {
       </ProtectedRoute>
       <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
         <User />
+      </ProtectedRoute>
+      <ProtectedRoute path="/post/create" exact={true} authenticated={authenticated}>
+        <CreatePost />
+      </ProtectedRoute>
+      <ProtectedRoute path="/p/:postId" exact={true} authenticated={authenticated}>
+        <PostPage />
       </ProtectedRoute>
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <HomePage/>

@@ -8,6 +8,10 @@
     width: 400px;
 }
 
+.postpage_post_image {
+    width: 400px;
+}
+
 .usercard_container {
     border: 1px solid black;
     display: flex;
@@ -22,4 +26,12 @@
 .comment_image {
     max-width: 50px;
     border-radius: 50%;
+}
+
+.postpage_post {
+    border: 1px solid black
+}
+
+.postpage_post_container {
+    display: flex
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 
 const DisplayComments = ({comment}) => {
-    console.log(comment)
     return (
         <div>
             <img className='comment_image' src={comment.user.profilePicture} alt=""/>
