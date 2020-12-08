@@ -13,7 +13,14 @@ def getPost(postId):
     return {'post': post.to_user_dict()}
 
 
+@post_routes.route('/user/<int:userId>', methods=['GET'])
+def getPosts(userId):
+    posts = Post.query.filter(Post.userId == userId).all()
+    return {'posts': [post.to_dict() for post in posts]}
+
+
 @post_routes.route('/create', methods=['POST'])
+@login_required
 def createPost():
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']

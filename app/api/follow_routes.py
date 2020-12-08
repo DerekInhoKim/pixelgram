@@ -24,3 +24,13 @@ def followingUser(followerId, followingId):
         return {'following': True}
     else:
         return {'following': False}
+
+@follow_routes.route('/<int:userId>/following', methods=['GET'])
+def getFollowing(userId):
+    allFollowing = db.session.query(followers).filter(followers.c.followerId == userId).all()
+    return {'follow': allFollowing}
+
+@follow_routes.route('/<int:userId>/followers', methods=['GET'])
+def getFollowers(userId):
+    allFollowers = db.session.query(followers).filter(followers.c.followingId == userId).all()
+    return {'follow': allFollowers}

@@ -41,6 +41,22 @@
     border-radius: 50%;
 }
 
+.userpage_container {
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+}
+
 .userpage_header_container {
     display: flex;
+    border: 1px solid black;
+    width: 50%;
+}
+
+.userpage_header_text {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    justify-content: space-around;
+    margin-bottom: 30px;
 }

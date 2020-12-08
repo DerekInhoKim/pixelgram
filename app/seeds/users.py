@@ -19,7 +19,7 @@ def seed_users():
             email='bart@bart.com',
             hashed_password="pbkdf2:sha256:150000$cayYFXNj$a4e7c14d1e10f2f90d07516423c20a789dbcb8e976a866e20728264b77b1f0b6",
             about="I am the all knowing",
-            profilePicture='https://www.vhv.rs/dpng/d/451-4513912_junimo-stardewvalley-freetoedit-stardew-junimo-hd-png-download.png'),
+            profilePicture='https://i.redd.it/acwc2x1396j21.jpg'),
         User(
             fullname='Sergey',
             username='SergimusPrime',

@@ -1,6 +1,14 @@
+// Returns a post based on the postId passed in
 export const getPost = async (postId) => {
     const response = await fetch(`/api/posts/${postId}`)
     return await response.json()
+}
+
+// Returns all posts for a specific user
+export const getPosts = async (userId) => {
+    const response = await fetch(`/api/posts/user/${userId}`)
+    return await response.json()
+
 }
 
 export const createPost = async(caption, imageUrl) => {
