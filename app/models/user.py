@@ -3,8 +3,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 followers = db.Table('followers',
-    db.Column('followerId', db.Integer, db.ForeignKey('users.id')),
-    db.Column('followingId', db.Integer, db.ForeignKey('users.id')),
+    db.Column('followerId', db.Integer,
+              db.ForeignKey('users.id'), primary_key=True),
+    db.Column('followingId', db.Integer,
+              db.ForeignKey('users.id'), primary_key=True),
     db.UniqueConstraint('followerId', 'followingId', name='uniqueIdx')
     )
 
@@ -24,8 +26,11 @@ class User(db.Model, UserMixin):
     likes = db.relationship('Like', back_populates='user')
     followed = db.relationship(
         'User', secondary=followers,
+        # .c is a collection of the individual column with that name
         primaryjoin=(followers.c.followerId == id),
-        secondaryjoin=(followers.c.followingId == id)
+        secondaryjoin=(followers.c.followingId == id),
+        # Followed by backref is how to access the following id
+        backref='followed_by'
     )
 
     @property

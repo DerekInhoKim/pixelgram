@@ -31,3 +31,7 @@
 .postpage_post {
     border: 1px solid black
 }
+
+.postpage_post_container {
+    display: flex
+}
